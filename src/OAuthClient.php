@@ -8,8 +8,11 @@ use Kwarcek\FurgonetkaRestApi\Exceptions\FurgonetkaAuthException;
 
 class OAuthClient
 {
-    public function __construct(private ClientInterface $client)
+    private ClientInterface $client;
+
+    public function __construct(ClientInterface $client)
     {
+        $this->client = $client;
     }
 
     public function authorize(string $clientId, string $redirectUri, ?string $state = null, string $scope = 'api'): AuthCredential

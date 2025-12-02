@@ -10,10 +10,16 @@ use Kwarcek\FurgonetkaRestApi\Entity\Entity;
  */
 class UserAgreement extends Entity
 {
+    public bool $phoneAndEmailProcessingAgreement;
+    public bool $marketingAgreement;
+
     public function __construct(
-        public bool $phoneAndEmailProcessingAgreement,
-        public bool $marketingAgreement,
-    ){}
+        bool $phoneAndEmailProcessingAgreement,
+        bool $marketingAgreement
+    ){
+        $this->marketingAgreement = $marketingAgreement;
+        $this->phoneAndEmailProcessingAgreement = $phoneAndEmailProcessingAgreement;
+    }
 
     public function toArray(): array
     {

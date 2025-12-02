@@ -10,12 +10,22 @@ use Kwarcek\FurgonetkaRestApi\Entity\Entity;
  */
 class UserData extends Entity
 {
+    public string $name;
+    public string $surname;
+    public string $email;
+    public string $phone;
+
     public function __construct(
-        public string $name,
-        public string $surname,
-        public string $email,
-        public string $phone
-    ){}
+        string $name,
+        string $surname,
+        string $email,
+        string $phone
+    ){
+        $this->phone = $phone;
+        $this->email = $email;
+        $this->surname = $surname;
+        $this->name = $name;
+    }
 
     public function toArray(): array
     {

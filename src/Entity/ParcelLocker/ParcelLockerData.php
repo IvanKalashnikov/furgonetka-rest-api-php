@@ -13,13 +13,23 @@ class ParcelLockerData extends Entity
     public string $place = '';
     public string $construction = '';
     public string $additionalInfo = '';
+    public string $street;
+    public string $postcode;
+    public string $city;
+    public string $size;
 
     public function __construct(
-        public string $street,
-        public string $postcode,
-        public string $city,
-        public string $size
-    ){}
+        string $street,
+        string $postcode,
+        string $city,
+        string $size
+    )
+    {
+        $this->size = $size;
+        $this->city = $city;
+        $this->postcode = $postcode;
+        $this->street = $street;
+    }
 
     public function toArray(): array
     {

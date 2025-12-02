@@ -11,13 +11,19 @@ class Payment extends Entity
     public string $errorReturnUrl = '';
     public string $blikWithoutCode = '';
     public string $blikCode = '';
+    public float $amount;
+    public int $channel;
+    public string $returnUrl;
 
     public function __construct(
-        public float $amount,
-        public int $channel,
-        public string $returnUrl,
+        float $amount,
+        int $channel,
+        string $returnUrl
     )
     {
+        $this->returnUrl = $returnUrl;
+        $this->channel = $channel;
+        $this->amount = $amount;
 
     }
 
