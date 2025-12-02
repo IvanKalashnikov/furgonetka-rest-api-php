@@ -1,5 +1,5 @@
 {
-  "name": "kwarcek/furgonetka-rest-api-php",
+  "name": "ivankalashnikov/furgonetka-rest-api-php",
   "description": "Furgonetka REST API service in PHP.",
   "keywords": ["furgonetka","api","php","rest"],
   "homepage": "https://github.com/kwarcek/furgonetka-rest-api-php",
