@@ -47,7 +47,7 @@ class FurgonetkaAuth
 
 
     /** @throws GuzzleException */
-    private function getAuthToken(ClientInterface $authClient, string $authorizationHeader): ResponseInterface
+    protected function getAuthToken(ClientInterface $authClient, string $authorizationHeader): ResponseInterface
     {
         return $authClient->request('POST', '/oauth/token', [
             'headers' => [
