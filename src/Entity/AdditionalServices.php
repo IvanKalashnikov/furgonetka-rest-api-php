@@ -43,7 +43,7 @@ class AdditionalServices extends Entity
 
     public function toArray(): array
     {
-        return [
+        $services = [
             'cod' => $this->cod,
             'rod' => $this->rod,
             'cud' => $this->cud,
@@ -51,7 +51,6 @@ class AdditionalServices extends Entity
             'guarantee_0900' => $this->guarantee0900,
             'guarantee_0930' => $this->guarantee0930,
             'guarantee_1200' => $this->guarantee1200,
-            'delivery_on_day' => $this->deliveryOnDay,
             'saturday_delivery' => $this->saturdayDelivery,
             'additional_handling' => $this->additionalHandling,
             'sms_predelivery_information' => $this->smsPredeliveryInformation,
@@ -77,5 +76,11 @@ class AdditionalServices extends Entity
             'digital_label' => $this->digitalLabel,
             'poczta_kurier24' => $this->pocztaKurier24,
         ];
+
+        if (!empty($this->deliveryOnDay)) {
+            $services['delivery_on_day'] = $this->deliveryOnDay;
+        }
+
+        return $services;
     }
 }
