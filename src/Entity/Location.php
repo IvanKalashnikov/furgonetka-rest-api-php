@@ -16,10 +16,10 @@ class Location extends Entity
     public function toArray(): array
     {
         $location = [
-          'coordinates' => $this->coordinate->toArray(),
-          'search_phrase' => $this->searchPhrase,
-          'address' => $this->address->toArray(),
-          'points_max_distance' => $this->pointsMaxDistance,
+            'coordinates' => ($this->coordinate === null) ? null : $this->coordinate->toArray(),
+            'search_phrase' => $this->searchPhrase,
+            'address' => $this->address->toArray(),
+            'points_max_distance' => $this->pointsMaxDistance,
         ];
 
         foreach ($location as $k => $v) {
