@@ -19,7 +19,7 @@ class Filter extends Entity
         $filters = [
             'services' => $this->services,
             'point_types' => $this->pointTypes,
-            'map_bounds' => $this->mapBound->toArray(),
+            'map_bounds' => ($this->mapBound === null) ? null : $this->mapBound->toArray(),
             'type' => $this->type,
             'point_id' => $this->pointId,
         ];
