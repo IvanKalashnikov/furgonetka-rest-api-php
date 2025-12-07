@@ -54,23 +54,24 @@ class PackageRequest extends Request
      * @throws FurgonetkaApiException
      */
     public function validatePackage(
-        AddressDetails $pickup,
-        AddressDetails $receiver,
-        int $serviceId,
-        array $parcels,
-        ?AddressDetails $sender,
+        AddressDetails     $pickup,
+        AddressDetails     $receiver,
+        int                $serviceId,
+        array              $parcels,
+        ?AddressDetails    $sender,
         AdditionalServices $additionalServices,
-        string $type = self::PACKAGE_TYPE_PACKAGE,
-        ?string $userReferenceNumber = null,
-        ?Payer $payer = null
-    ): array {
+        string             $type = self::PACKAGE_TYPE_PACKAGE,
+        ?string            $userReferenceNumber = null,
+        ?Payer             $payer = null
+    ): array
+    {
         $response = $this->client->post('/packages/validate', [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcels,
-            'sender' => $sender?->toArray(),
-            'payer' => $payer?->toArray(),
+            'sender' => ($sender === null) ? null : $sender->toArray(),
+            'payer' => ($payer === null) ? null : $payer->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
             'additional_services' => $additionalServices->toArray(),
@@ -276,27 +277,28 @@ class PackageRequest extends Request
      * @throws FurgonetkaApiException
      */
     public function editPackage(
-        string $packageId,
-        AddressDetails $pickup,
-        AddressDetails $receiver,
-        int $serviceId,
-        Parcel $parcel,
-        ?AddressDetails $sender,
+        string              $packageId,
+        AddressDetails      $pickup,
+        AddressDetails      $receiver,
+        int                 $serviceId,
+        Parcel              $parcel,
+        ?AddressDetails     $sender,
         ?AdditionalServices $additionalServices,
-        ?Payer $payer = null,
-        string $type = self::PACKAGE_TYPE_PACKAGE,
-        ?string $userReferenceNumber = null
-    ): array {
+        ?Payer              $payer = null,
+        string              $type = self::PACKAGE_TYPE_PACKAGE,
+        ?string             $userReferenceNumber = null
+    ): array
+    {
         $response = $this->client->put("/packages/{$packageId}", [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcel->toArray(),
-            'sender' => $sender?->toArray(),
-            'payer' => $payer?->toArray(),
+            'sender' => ($sender === null) ? null : $sender->toArray(),
+            'payer' => ($payer === null) ? null : $payer->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
-            'additional_services' => $additionalServices?->toArray(),
+            'additional_services' => ($additionalServices === null) ? null : $additionalServices->toArray(),
         ]);
 
         return $this->response($response);
@@ -339,10 +341,11 @@ class PackageRequest extends Request
      * @throws FurgonetkaApiException
      */
     public function addPackageToTracking(
-        string $consigmentNoteNumber,
+        string  $consigmentNoteNumber,
         ?string $service = null,
-        string $name = ''
-    ): array {
+        string  $name = ''
+    ): array
+    {
         $response = $this->client->post('/packages/add-to-tracking', [
             'package_no' => $consigmentNoteNumber,
             'service' => $service,
@@ -405,26 +408,27 @@ class PackageRequest extends Request
      * @throws FurgonetkaApiException
      */
     public function addPackage(
-        AddressDetails $pickup,
-        AddressDetails $receiver,
-        int $serviceId,
-        array $parcels,
-        ?AddressDetails $sender = null,
+        AddressDetails      $pickup,
+        AddressDetails      $receiver,
+        int                 $serviceId,
+        array               $parcels,
+        ?AddressDetails     $sender = null,
         ?AdditionalServices $additionalServices = null,
-        ?string $userReferenceNumber = null,
-        string $type = self::PACKAGE_TYPE_PACKAGE,
-        ?Payer $payer = null
-    ): array {
+        ?string             $userReferenceNumber = null,
+        string              $type = self::PACKAGE_TYPE_PACKAGE,
+        ?Payer              $payer = null
+    ): array
+    {
         $response = $this->client->post('/packages', [
             'pickup' => $pickup->toArray(),
             'receiver' => $receiver->toArray(),
             'service_id' => $serviceId,
             'parcels' => $parcels,
-            'sender' => $sender?->toArray(),
-            'payer' => $payer?->toArray(),
+            'sender' => ($sender === null) ? null : $sender->toArray(),
+            'payer' => ($payer === null) ? null : $payer->toArray(),
             'user_reference_number' => $userReferenceNumber,
             'type' => $type,
-            'additional_services' => $additionalServices?->toArray(),
+            'additional_services' => ($additionalServices === null) ? null : $additionalServices->toArray(),
         ]);
 
         return $this->response($response);
@@ -444,10 +448,10 @@ class PackageRequest extends Request
      * @throws FurgonetkaApiException
      */
     public function getPackagesList(
-        ?int $lastPackageId = null,
-        ?int $limit = null,
+        ?int   $lastPackageId = null,
+        ?int   $limit = null,
         string $listType = self::LIST_TYPE_ALL,
-        string $query = '',
+        string $query = ''
     ): array {
         $response = $this->client->get('/packages', [
             'limit' => $limit,
