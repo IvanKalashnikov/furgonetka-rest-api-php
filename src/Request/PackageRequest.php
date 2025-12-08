@@ -154,7 +154,10 @@ class PackageRequest extends Request
             'label' => ($label) ? $label->pageFormat : null,
         ]);
 
-        return $this->response($response);
+        return [
+            'code' => $response->getStatusCode(),
+            'data' => $response->getBody()->getContents()
+        ];
     }
 
     /**
